@@ -35,7 +35,7 @@ However, pull requests related to any of these issues are always appreciated.
 
 ### License
 srs is licensed under the Mozilla Public License, version 2.0, and is marked "Incompatible With Secondary Licenses".
-The full license file can be found in the `LICENSE` file or at https://mozilla.org/MPL/2.0/.
+The full license text can be found in the `LICENSE` file or at https://mozilla.org/MPL/2.0/.
 However, I am willing to distribute the project under certain alternative licenses; if this is needed, email me.
 
 A full list of libraries used can be found in `ACKNOWLEDGEMENTS`.

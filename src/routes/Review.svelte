@@ -11,14 +11,20 @@ defined by the Mozilla Public License, v. 2.0.
 
 <script lang="ts">
     import {invoke} from '@tauri-apps/api/tauri'
-    import MarkdownIt from 'markdown-it'
-    import * as ruby from 'markdown-it-ruby'
+    import {unified} from "unified";
+    import remarkParse from "remark-parse";
+    import remarkRehype from "remark-rehype";
+    import rehypeStringify from "rehype-stringify";
+    import remarkRuby from "remark-denden-ruby";
 
 
     let card: [String, String]
     let show = false
-    const md = new MarkdownIt()
-    md.use(ruby)
+    const md = unified()
+        .use(remarkParse)
+        .use(remarkRuby)
+        .use(remarkRehype)
+        .use(rehypeStringify)
 
     const next_card = async () => {
         show = false
@@ -55,9 +61,9 @@ defined by the Mozilla Public License, v. 2.0.
 <div>
     {#if card !== undefined}
         {#if card.length !== 0}
-            {@html md.render(card[0])}<br/>
+            {@html md.processSync(card[0])}<br/>
             {#if show}
-                <hr/>{@html md.render(card[1])}<br/>
+                <hr/>{@html md.processSync(card[1])}<br/>
                 <button on:click={again}>Again</button>
                 <button on:click={hard}>Hard</button>
                 <button on:click={good}>Good</button>

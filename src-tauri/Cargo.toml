@@ -1,7 +1,7 @@
 [package]
 name = "srs"
 version = "0.1.0"
-description = "A spaced repetition flashcard app."
+description = "srs"
 authors = ["Matthew Boyer"]
 license = "MPL-2.0-no-copyleft-exception"
 repository = "https://github.com/byAsterisk/srs"

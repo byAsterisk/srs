@@ -8,6 +8,9 @@ sqlite is licensed under the MIT license (licenses/sqlite)
 tauri is licensed under the MIT license (licenses/tauri)
 
 Frontend:
-markdown-it is licensed under the MIT license (licenses/markdown-it)
-markdown-it-ruby is licensed under the MIT license (licenses/markdown-it-ruby)
-svelte-routing is licensed under the  license (licenses/svelte-routing)
+remark-denden-ruby is licensed under the MIT license (licenses/remark-denden-ruby)
+remark-parse is licensed under the MIT license (licenses/remark-parse)
+remark-rehype is licensed under the MIT license (licenses/remark-rehype)
+rehype-stringify is licensed under the MIT license (licenses/remark-stringify)
+svelte-routing is licensed under the MIT license (licenses/svelte-routing)
+unified is licensed under the MIT license (licenses/unified)

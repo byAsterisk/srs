@@ -11,13 +11,19 @@ defined by the Mozilla Public License, v. 2.0.
 
 <script lang="ts">
     import {invoke} from "@tauri-apps/api/tauri";
-    import MarkdownIt from 'markdown-it'
-    import * as ruby from 'markdown-it-ruby'
+    import {unified} from "unified";
+    import remarkParse from "remark-parse";
+    import remarkRehype from "remark-rehype";
+    import rehypeStringify from "rehype-stringify";
+    import remarkRuby from "remark-denden-ruby";
     import {WebviewWindow} from "@tauri-apps/api/window";
     import {save} from "@tauri-apps/api/dialog";
 
-    const md = new MarkdownIt()
-    md.use(ruby)
+    const md = unified()
+        .use(remarkParse)
+        .use(remarkRuby)
+        .use(remarkRehype)
+        .use(rehypeStringify)
 
     export let deck
     let cards
@@ -75,7 +81,7 @@ defined by the Mozilla Public License, v. 2.0.
         <button on:click={new_card}>New</button>
         {#if cards !== undefined}
             {#each Object.entries(cards) as [index, card]}
-                <div on:click={() => {activeCard = index}}>{@html md.render(card[0])}</div><br />
+                <div on:click={() => {activeCard = index}}>{@html md.processSync(card[0])}</div><br />
             {/each}
         {/if}
     </div>
