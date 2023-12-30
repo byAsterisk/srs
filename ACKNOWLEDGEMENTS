@@ -1,0 +1,13 @@
+Backend:
+chrono is licensed under the MIT license (licenses/chrono)
+dirs is licensed under the MIT license (licenses/dirs)
+rs-fsrs is licensed under the MIT license (licenses/rs-fsrs)
+serde is licensed under the MIT license (licenses/serde)
+serde-json is licensed under the MIT license (licenses/serde-json)
+sqlite is licensed under the MIT license (licenses/sqlite)
+tauri is licensed under the MIT license (licenses/tauri)
+
+Frontend:
+markdown-it is licensed under the MIT license (licenses/markdown-it)
+markdown-it-ruby is licensed under the MIT license (licenses/markdown-it-ruby)
+svelte-routing is licensed under the  license (licenses/svelte-routing)

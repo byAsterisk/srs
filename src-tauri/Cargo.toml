@@ -1,0 +1,27 @@
+[package]
+name = "srs"
+version = "0.1.0"
+description = "A spaced repetition flashcard app."
+authors = ["Matthew Boyer"]
+license = "MPL-2.0-no-copyleft-exception"
+repository = "https://github.com/byAsterisk/srs"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+tauri = { version = "1.5", features = [ "dialog-open", "dialog-save", "window-close", "window-create", "shell-open"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = "0.4.31"
+dirs = "5.0.1"
+fsrs = {path = "../lib/rs-fsrs" }
+sqlite = "0.32.0"
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]

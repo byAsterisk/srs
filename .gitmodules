@@ -1,0 +1,3 @@
+[submodule "lib/rs-fsrs"]
+	path = lib/rs-fsrs
+	url = https://github.com/open-spaced-repetition/rs-fsrs
