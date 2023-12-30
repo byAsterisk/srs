@@ -12,19 +12,21 @@ defined by the Mozilla Public License, v. 2.0.
 <script lang="ts">
     import {invoke} from '@tauri-apps/api/tauri'
     import {unified} from "unified";
+    import rehypeStringify from "rehype-stringify";
+    import remarkBreaks from "remark-breaks";
+    import remarkRuby from "remark-denden-ruby";
     import remarkParse from "remark-parse";
     import remarkRehype from "remark-rehype";
-    import rehypeStringify from "rehype-stringify";
-    import remarkRuby from "remark-denden-ruby";
 
 
     let card: [String, String]
     let show = false
     const md = unified()
-        .use(remarkParse)
-        .use(remarkRuby)
-        .use(remarkRehype)
         .use(rehypeStringify)
+        .use(remarkBreaks)
+        .use(remarkRuby)
+        .use(remarkParse)
+        .use(remarkRehype)
 
     const next_card = async () => {
         show = false

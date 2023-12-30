@@ -12,18 +12,20 @@ defined by the Mozilla Public License, v. 2.0.
 <script lang="ts">
     import {invoke} from "@tauri-apps/api/tauri";
     import {unified} from "unified";
+    import rehypeStringify from "rehype-stringify";
+    import remarkBreaks from "remark-breaks";
+    import remarkRuby from "remark-denden-ruby";
     import remarkParse from "remark-parse";
     import remarkRehype from "remark-rehype";
-    import rehypeStringify from "rehype-stringify";
-    import remarkRuby from "remark-denden-ruby";
     import {WebviewWindow} from "@tauri-apps/api/window";
     import {save} from "@tauri-apps/api/dialog";
 
     const md = unified()
-        .use(remarkParse)
-        .use(remarkRuby)
-        .use(remarkRehype)
         .use(rehypeStringify)
+        .use(remarkBreaks)
+        .use(remarkRuby)
+        .use(remarkParse)
+        .use(remarkRehype)
 
     export let deck
     let cards
@@ -44,9 +46,9 @@ defined by the Mozilla Public License, v. 2.0.
         activeCard = row
     }
     const edit_card = async () => {
-        await invoke("edit_card", {deck: deck, id: activeCard, obverse: cards[activeCard][0], reverse: cards[activeCard][1]})
+        await invoke("edit_card", {deck: deck, id: Number(activeCard), obverse: cards[activeCard][0], reverse: cards[activeCard][1]})
     }
-    const reset = async () => {await invoke("reset_card", {deck: deck, id: activeCard})}
+    const reset = async () => {await invoke("reset_card", {deck: deck, id: Number(activeCard)})}
     const delete_card = async () => {await invoke("delete_card", {deck: deck, id: Number(activeCard)})}
 
     const export_deck = async () => {await invoke("export_deck", {deck: deck, path: await save()})}
@@ -87,8 +89,8 @@ defined by the Mozilla Public License, v. 2.0.
     </div>
     <div>
         {#if activeCard !== undefined}
-            <input type="text" bind:value={cards[activeCard][0]} /><br />
-            <input type="text" bind:value={cards[activeCard][1]} /><br />
+            <textarea bind:value={cards[activeCard][0]} /><br />
+            <textarea bind:value={cards[activeCard][1]} /><br />
             <button on:click={edit_card}>Save</button>
             <button on:click={reset}>Reset</button>
             <button on:click={delete_card}>Delete</button>

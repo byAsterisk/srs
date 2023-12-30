@@ -1,6 +1,6 @@
 [package]
 name = "srs"
-version = "0.1.0"
+version = "0.1.2"
 description = "srs"
 authors = ["Matthew Boyer"]
 license = "MPL-2.0-no-copyleft-exception"

@@ -8,9 +8,17 @@ sqlite is licensed under the MIT license (licenses/sqlite)
 tauri is licensed under the MIT license (licenses/tauri)
 
 Frontend:
+remark-breaks is licensed under the MIT license (licenses/remark-breaks)
 remark-denden-ruby is licensed under the MIT license (licenses/remark-denden-ruby)
 remark-parse is licensed under the MIT license (licenses/remark-parse)
 remark-rehype is licensed under the MIT license (licenses/remark-rehype)
 rehype-stringify is licensed under the MIT license (licenses/remark-stringify)
 svelte-routing is licensed under the MIT license (licenses/svelte-routing)
 unified is licensed under the MIT license (licenses/unified)
+
+const {unified} = await import("unified");
+const {default: rehypeStringify} = await import("rehype-stringify");
+const {default: remarkBreaks} = await import("remark-breaks");
+const {default: remarkRuby} = await import("remark-denden-ruby");
+const {default: remarkParse} = await import("remark-parse");
+const {default: remarkRehype} = await import("remark-rehype");

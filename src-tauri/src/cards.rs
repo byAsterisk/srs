@@ -69,7 +69,7 @@ impl Cards {
     fn refresh(&self) { *(self.cards.lock().unwrap()) = Self::get_cards(); }
 
     fn add_card_to_vec(cards: &mut Vec<(String, i64, String, String, Card)>, statement: &mut Statement, deck: &String) {
-        cards.push((deck.clone(), statement.read::<i64, _>("rowid").unwrap(), statement.read::<String, _>("OBVERSE").unwrap(), statement.read::<String, _>("REVERSE").unwrap(), Card {
+        cards.push((deck.clone(), statement.read::<i64, _>("rowid").unwrap(), statement.read::<String, _>("OBVERSE").unwrap().as_str().to_string(), statement.read::<String, _>("REVERSE").unwrap().as_str().to_string(), Card {
             due: DateTime::from(DateTime::parse_from_rfc3339(&statement.read::<String, _>("DUE").unwrap()).unwrap()),
             stability: statement.read::<f64, _>("STABILITY").unwrap() as f32,
             difficulty: statement.read::<f64, _>("DIFFICULTY").unwrap() as f32,
@@ -218,7 +218,7 @@ impl Cards {
             }
         } else { deck_name = file_name.to_string(); }
 
-        for card in card_vec { self.new_card(deck_name.to_string(), card[0].as_str().unwrap().to_string(), card[1].as_str().unwrap().to_string())?; }
+        for card in card_vec { self.new_card(deck_name.to_string(), str::replace(card[0].as_str().unwrap(), "\\n", "\n").to_string(), str::replace(card[1].as_str().unwrap(), "\\n", "\n").to_string())?; }
         self.refresh();
         Ok(())
     }
